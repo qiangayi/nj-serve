@@ -12,8 +12,7 @@ namespace NJ_Service
     {
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            IEnumerable<string> methodOverrideHeader;
-            if (request.Headers.TryGetValues("X-HTTP-Method-Override", out methodOverrideHeader))
+            if (request.Headers.TryGetValues("X-HTTP-Method-Override", out var methodOverrideHeader))
             {
                 request.Method = new HttpMethod(methodOverrideHeader.First());
             }
